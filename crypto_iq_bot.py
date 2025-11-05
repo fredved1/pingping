@@ -422,22 +422,25 @@ class CryptoIQWebSocketClient:
             }
         }
 
-        # Absorption pattern: High PV with low delta
+        # Absorption pattern: High PV with RELATIVELY low delta
         # CRITICAL: INVERT delta for absorption (liquidation theory)
         # Positive delta = liquidations above = TOP → SHORT
         # Negative delta = liquidations below = BOTTOM → LONG
-        if total_pv > 500 and abs(avg_delta) < 30:
+        # Adjusted thresholds for Crypto IQ's real data scale (delta in 10k-1M range)
+        if total_pv > 100000 and abs(avg_delta) < 50000:
             pattern['pattern'] = 'absorption'
             pattern['confidence'] = 85
             pattern['direction'] = 'SHORT' if avg_delta > 0 else 'LONG'  # INVERSED!
 
         # Breakout pattern: High delta with high strings
-        elif abs(avg_delta) > 100 and max_strings > 15:
+        # Adjusted: delta > 100k for Crypto IQ scale
+        elif abs(avg_delta) > 100000 and max_strings > 15:
             pattern['pattern'] = 'breakout'
             pattern['confidence'] = 80
             pattern['direction'] = 'LONG' if avg_delta > 0 else 'SHORT'
 
         # Reversal pattern: Change in delta direction
+        # Adjusted: second_delta > 50k for Crypto IQ scale
         elif len(recent) > 5:
             first_half = recent[:len(recent)//2]
             second_half = recent[len(recent)//2:]
@@ -445,7 +448,7 @@ class CryptoIQWebSocketClient:
             first_delta = np.mean([b.delta for b in first_half])
             second_delta = np.mean([b.delta for b in second_half])
 
-            if first_delta * second_delta < 0 and abs(second_delta) > 50:
+            if first_delta * second_delta < 0 and abs(second_delta) > 50000:
                 pattern['pattern'] = 'reversal'
                 pattern['confidence'] = 75
                 pattern['direction'] = 'LONG' if second_delta > 0 else 'SHORT'
@@ -926,7 +929,7 @@ class CryptoIQTradingBot:
             if len(self.recent_bursts) > 50:
                 self.recent_bursts = self.recent_bursts[-50:]
 
-            if pattern['pattern'] != 'none':
+            if pattern['pattern'] not in ['none', 'insufficient_data']:
                 logging.info(f"🔥 Pattern detected: {pattern['pattern'].upper()} for {symbol} (Confidence: {pattern['confidence']}%)")
 
                 # Generate trading signal
