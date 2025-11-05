@@ -41,7 +41,17 @@ class Config:
     # Trading Parameters
     INITIAL_CAPITAL = 200.0
     MAX_POSITIONS = 2
-    POSITION_SIZE_PCT = 0.5  # Increased from 30% to 50% for better profit vs fees
+    POSITION_SIZE_PCT = 0.5  # Base position size (50% of capital)
+
+    # Pattern-specific position size multipliers
+    # ABSORPTION: Larger positions (85% confidence - highest priority)
+    ABSORPTION_SIZE_MULTIPLIER = 1.2  # 60% of capital
+
+    # BREAKOUT: Normal positions (80% confidence)
+    BREAKOUT_SIZE_MULTIPLIER = 1.0  # 50% of capital (base)
+
+    # REVERSAL: Smaller positions (75% confidence)
+    REVERSAL_SIZE_MULTIPLIER = 0.8  # 40% of capital
 
     # WooX Exchange Fees
     MAKER_FEE = 0.0003  # 0.03%
@@ -53,9 +63,19 @@ class Config:
     STRINGS_TARGET = 10  # Strings threshold for detection
     MIN_DELTA_FOR_SIGNAL = 50  # Minimum delta for trade signal
 
-    # Risk Management (adjusted for fees)
-    STOP_LOSS_PCT = 2.5  # 2.5% to account for fees
-    TAKE_PROFIT_PCT = 4.0  # 4% to ensure profit after 0.06% fees
+    # Risk Management (adjusted for fees) - Pattern-specific
+    # ABSORPTION: Tighter stops (liquidation = quick reversal)
+    ABSORPTION_STOP_LOSS_PCT = 2.0
+    ABSORPTION_TAKE_PROFIT_PCT = 4.5
+
+    # BREAKOUT: Wider stops (momentum can continue)
+    BREAKOUT_STOP_LOSS_PCT = 3.0
+    BREAKOUT_TAKE_PROFIT_PCT = 5.0
+
+    # REVERSAL: Medium stops (confirmation needed)
+    REVERSAL_STOP_LOSS_PCT = 2.5
+    REVERSAL_TAKE_PROFIT_PCT = 4.0
+
     TRAILING_STOP_PCT = 2.0
 
     # Symbols to trade
@@ -398,10 +418,13 @@ class CryptoIQWebSocketClient:
         }
 
         # Absorption pattern: High PV with low delta
+        # CRITICAL: INVERT delta for absorption (liquidation theory)
+        # Positive delta = liquidations above = TOP → SHORT
+        # Negative delta = liquidations below = BOTTOM → LONG
         if total_pv > 500 and abs(avg_delta) < 30:
             pattern['pattern'] = 'absorption'
             pattern['confidence'] = 85
-            pattern['direction'] = 'LONG' if avg_delta > 0 else 'SHORT'
+            pattern['direction'] = 'SHORT' if avg_delta > 0 else 'LONG'  # INVERSED!
 
         # Breakout pattern: High delta with high strings
         elif abs(avg_delta) > 100 and max_strings > 15:
@@ -577,16 +600,32 @@ class SignalGenerator:
 
         # Create trading signal
         direction = burst_pattern['direction']
+        pattern_type = burst_pattern['pattern']
+
+        # Get pattern-specific risk parameters
+        if pattern_type == 'absorption':
+            stop_loss_pct = Config.ABSORPTION_STOP_LOSS_PCT
+            take_profit_pct = Config.ABSORPTION_TAKE_PROFIT_PCT
+        elif pattern_type == 'breakout':
+            stop_loss_pct = Config.BREAKOUT_STOP_LOSS_PCT
+            take_profit_pct = Config.BREAKOUT_TAKE_PROFIT_PCT
+        elif pattern_type == 'reversal':
+            stop_loss_pct = Config.REVERSAL_STOP_LOSS_PCT
+            take_profit_pct = Config.REVERSAL_TAKE_PROFIT_PCT
+        else:
+            # Fallback to reversal params
+            stop_loss_pct = Config.REVERSAL_STOP_LOSS_PCT
+            take_profit_pct = Config.REVERSAL_TAKE_PROFIT_PCT
 
         # Calculate entry, stop, and target
         if direction == 'LONG':
             entry_price = current_price
-            stop_loss = entry_price * (1 - Config.STOP_LOSS_PCT / 100)
-            take_profit = entry_price * (1 + Config.TAKE_PROFIT_PCT / 100)
+            stop_loss = entry_price * (1 - stop_loss_pct / 100)
+            take_profit = entry_price * (1 + take_profit_pct / 100)
         else:  # SHORT
             entry_price = current_price
-            stop_loss = entry_price * (1 + Config.STOP_LOSS_PCT / 100)
-            take_profit = entry_price * (1 - Config.TAKE_PROFIT_PCT / 100)
+            stop_loss = entry_price * (1 + stop_loss_pct / 100)
+            take_profit = entry_price * (1 - take_profit_pct / 100)
 
         signal = TradingSignal(
             timestamp=datetime.now(),
@@ -933,20 +972,41 @@ class CryptoIQTradingBot:
             'entry_price': signal.entry_price,
             'stop_loss': signal.stop_loss,
             'take_profit': signal.take_profit,
-            'quantity': self._calculate_position_size(signal.entry_price),
+            'quantity': self._calculate_position_size(signal.entry_price, signal.burst_type),
             'entry_time': signal.timestamp,
             'burst_type': signal.burst_type
         }
 
         self.positions[signal.symbol] = position
 
-        logging.info(f"✅ TRADE EXECUTED: {signal.symbol} {signal.direction}")
-        logging.info(f"   Position size: {position['quantity']:.4f}")
-        logging.info(f"   Entry: ${position['entry_price']:.2f}")
+        # Get multiplier for logging
+        multiplier = 1.0
+        if signal.burst_type == 'ABSORPTION':
+            multiplier = self.config.ABSORPTION_SIZE_MULTIPLIER
+        elif signal.burst_type == 'BREAKOUT':
+            multiplier = self.config.BREAKOUT_SIZE_MULTIPLIER
+        elif signal.burst_type == 'REVERSAL':
+            multiplier = self.config.REVERSAL_SIZE_MULTIPLIER
 
-    def _calculate_position_size(self, price: float) -> float:
-        """Calculate position size based on available capital"""
-        available_capital = self.config.INITIAL_CAPITAL * self.config.POSITION_SIZE_PCT
+        logging.info(f"✅ TRADE EXECUTED: {signal.symbol} {signal.direction} ({signal.burst_type})")
+        logging.info(f"   Position size: {position['quantity']:.4f} (multiplier: {multiplier}x)")
+        logging.info(f"   Entry: ${position['entry_price']:.2f}")
+        logging.info(f"   Stop Loss: ${position['stop_loss']:.2f}")
+        logging.info(f"   Take Profit: ${position['take_profit']:.2f}")
+
+    def _calculate_position_size(self, price: float, burst_type: str) -> float:
+        """Calculate position size based on available capital and pattern type"""
+        # Get pattern-specific multiplier
+        if burst_type == 'ABSORPTION':
+            multiplier = self.config.ABSORPTION_SIZE_MULTIPLIER
+        elif burst_type == 'BREAKOUT':
+            multiplier = self.config.BREAKOUT_SIZE_MULTIPLIER
+        elif burst_type == 'REVERSAL':
+            multiplier = self.config.REVERSAL_SIZE_MULTIPLIER
+        else:
+            multiplier = 1.0  # Default
+
+        available_capital = self.config.INITIAL_CAPITAL * self.config.POSITION_SIZE_PCT * multiplier
         return available_capital / price
 
     def run_monitoring_loop(self):
