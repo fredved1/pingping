@@ -1,0 +1,737 @@
+2025-11-04 14:20:18,431 - INFO - Trading bot started
+2025-11-04 14:20:18,431 - INFO - Initial capital: $200.0
+2025-11-04 14:20:18,431 - INFO - Trading symbols: BTCUSDT, ETHUSDT, SOLUSDT, BNBUSDT, XRPUSDT, DOGEUSDT
+2025-11-04 14:20:31,294 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [103800, 104000],
+        "stop_loss": 1
+2025-11-04 14:20:31,295 - INFO - TRADE EXECUTED: BTCUSDT SHORT @ 103872.0600
+2025-11-04 14:20:31,296 - INFO - Reason: BB squeeze breakout to downside
+2025-11-04 14:20:31,296 - INFO - Confidence: 70%
+2025-11-04 14:20:31,300 - INFO - TRADE EXECUTED: SOLUSDT SHORT @ 161.1100
+2025-11-04 14:20:31,300 - INFO - Reason: BB squeeze breakout to downside
+2025-11-04 14:20:31,300 - INFO - Confidence: 70%
+2025-11-04 14:25:39,882 - INFO - POSITION CLOSED: SOLUSDT SHORT
+2025-11-04 14:25:39,883 - INFO - Exit Price: 160.7500, Reason: TAKE_PROFIT
+2025-11-04 14:25:39,883 - INFO - PnL: $0.09 (0.22%)
+2025-11-04 14:25:51,072 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "DOGEUSDT",
+        "direction": "LONG",
+        "confidence": 75,
+        "entry_zone": [0.155, 0.158],
+        "stop_loss": 0.1
+2025-11-04 14:25:51,073 - INFO - TRADE EXECUTED: DOGEUSDT LONG @ 0.1622
+2025-11-04 14:25:51,073 - INFO - Reason: Bullish reversal pattern detected
+2025-11-04 14:25:51,073 - INFO - Confidence: 75%
+2025-11-04 14:31:09,643 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "BNBUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [940.00, 945.00],
+        "stop_loss": 9
+2025-11-04 14:36:31,041 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 14:41:49,733 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "LONG",
+        "confidence": 75,
+        "entry_zone": [3500, 3520],
+        "stop_loss": 3450,
+
+2025-11-04 14:47:08,115 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 75,
+        "entry_zone": [103800, 104200],
+        "stop_loss": 10
+2025-11-04 14:52:29,171 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 14:57:48,759 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 15:03:08,815 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "XRPUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [2.24, 2.28],
+        "stop_loss": 2.35,
+2025-11-04 15:08:27,024 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [3510, 3525],
+        "stop_loss": 3560,
+2025-11-04 15:13:46,956 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [3510, 3525],
+        "stop_loss": 3560,
+2025-11-04 15:19:06,846 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [3510, 3520],
+        "stop_loss": 3550,
+2025-11-04 15:24:26,091 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "BNBUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [940.00, 945.00],
+        "stop_loss": 9
+2025-11-04 15:29:45,812 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "BNBUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [940.00, 945.00],
+        "stop_loss": 9
+2025-11-04 15:32:51,150 - INFO - POSITION CLOSED: BTCUSDT SHORT
+2025-11-04 15:32:51,150 - INFO - Exit Price: 103542.0300, Reason: TAKE_PROFIT
+2025-11-04 15:32:51,151 - INFO - PnL: $0.19 (0.32%)
+2025-11-04 15:32:51,165 - INFO - 🔥 IQ BURST DETECTED: BTCUSDT - Volume: 3.13x, Price: $103542.03, RSI: 42.2
+2025-11-04 15:32:51,166 - INFO - ⚠️  IQ BURST for BTCUSDT but no entry conditions met (RSI: 42.2, BB pos: 103542.03 vs [103609.98, 104172.24])
+2025-11-04 15:32:51,191 - INFO - 🔥 IQ BURST DETECTED: XRPUSDT - Volume: 2.84x, Price: $2.26, RSI: 48.1
+2025-11-04 15:32:51,191 - INFO - ⚠️  IQ BURST for XRPUSDT but no entry conditions met (RSI: 48.1, BB pos: 2.26 vs [2.25, 2.28])
+2025-11-04 15:32:51,195 - INFO - TRADE EXECUTED: BTCUSDT SHORT @ 103542.0300
+2025-11-04 15:32:51,195 - INFO - Reason: BB squeeze breakout to downside
+2025-11-04 15:32:51,196 - INFO - Confidence: 70%
+2025-11-04 15:33:52,786 - INFO - POSITION CLOSED: BTCUSDT SHORT
+2025-11-04 15:33:52,786 - INFO - Exit Price: 103366.7200, Reason: TAKE_PROFIT
+2025-11-04 15:33:52,787 - INFO - PnL: $0.08 (0.17%)
+2025-11-04 15:33:52,820 - INFO - 🔥 IQ BURST DETECTED: BNBUSDT - Volume: 2.53x, Price: $941.59, RSI: 42.6
+2025-11-04 15:33:52,821 - INFO - ⚠️  IQ BURST for BNBUSDT but no entry conditions met (RSI: 42.6, BB pos: 941.59 vs [940.38, 951.34])
+2025-11-04 15:33:52,826 - INFO - 🔥 IQ BURST DETECTED: XRPUSDT - Volume: 3.27x, Price: $2.26, RSI: 44.3
+2025-11-04 15:33:52,826 - INFO - ⚠️  IQ BURST for XRPUSDT but no entry conditions met (RSI: 44.3, BB pos: 2.26 vs [2.25, 2.28])
+2025-11-04 15:33:52,830 - INFO - TRADE EXECUTED: BTCUSDT SHORT @ 103366.7200
+2025-11-04 15:33:52,830 - INFO - Reason: BB squeeze breakout to downside
+2025-11-04 15:33:52,830 - INFO - Confidence: 70%
+2025-11-04 15:34:54,436 - INFO - 🔥 IQ BURST DETECTED: BTCUSDT - Volume: 4.74x, Price: $103551.67, RSI: 42.5
+2025-11-04 15:34:54,436 - INFO - ⚠️  IQ BURST for BTCUSDT but no entry conditions met (RSI: 42.5, BB pos: 103551.67 vs [103612.96, 104170.22])
+2025-11-04 15:34:54,454 - INFO - 🔥 IQ BURST DETECTED: BNBUSDT - Volume: 2.80x, Price: $944.45, RSI: 48.3
+2025-11-04 15:34:54,454 - INFO - ⚠️  IQ BURST for BNBUSDT but no entry conditions met (RSI: 48.3, BB pos: 944.45 vs [940.85, 951.15])
+2025-11-04 15:34:54,460 - INFO - 🔥 IQ BURST DETECTED: XRPUSDT - Volume: 3.61x, Price: $2.26, RSI: 48.8
+2025-11-04 15:34:54,460 - INFO - ⚠️  IQ BURST for XRPUSDT but no entry conditions met (RSI: 48.8, BB pos: 2.26 vs [2.25, 2.28])
+2025-11-04 15:35:04,544 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "BNBUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [942.00, 947.00],
+        "stop_loss": 9
+2025-11-04 15:36:06,147 - INFO - POSITION CLOSED: BTCUSDT SHORT
+2025-11-04 15:36:06,147 - INFO - Exit Price: 103448.1700, Reason: TAKE_PROFIT
+2025-11-04 15:36:06,148 - INFO - PnL: $-0.04 (-0.08%)
+2025-11-04 15:36:06,192 - INFO - TRADE EXECUTED: BTCUSDT SHORT @ 103448.1700
+2025-11-04 15:36:06,192 - INFO - Reason: BB squeeze breakout to downside
+2025-11-04 15:36:06,192 - INFO - Confidence: 70%
+2025-11-04 15:37:07,808 - INFO - POSITION CLOSED: BTCUSDT SHORT
+2025-11-04 15:37:07,808 - INFO - Exit Price: 103223.0200, Reason: TAKE_PROFIT
+2025-11-04 15:37:07,808 - INFO - PnL: $0.10 (0.22%)
+2025-11-04 15:37:07,851 - INFO - 🔥 IQ BURST DETECTED: DOGEUSDT - Volume: 2.79x, Price: $0.16, RSI: 50.5
+2025-11-04 15:37:07,851 - INFO - ⚠️  IQ BURST for DOGEUSDT but no entry conditions met (RSI: 50.5, BB pos: 0.16 vs [0.16, 0.16])
+2025-11-04 15:37:07,851 - INFO - TRADE EXECUTED: BTCUSDT SHORT @ 103223.0200
+2025-11-04 15:37:07,851 - INFO - Reason: BB squeeze breakout to downside
+2025-11-04 15:37:07,851 - INFO - Confidence: 70%
+2025-11-04 15:38:09,432 - INFO - POSITION CLOSED: BTCUSDT SHORT
+2025-11-04 15:38:09,432 - INFO - Exit Price: 103029.4600, Reason: TAKE_PROFIT
+2025-11-04 15:38:09,432 - INFO - PnL: $0.09 (0.19%)
+2025-11-04 15:38:09,477 - INFO - TRADE EXECUTED: BTCUSDT SHORT @ 103029.4600
+2025-11-04 15:38:09,477 - INFO - Reason: BB squeeze breakout to downside
+2025-11-04 15:38:09,477 - INFO - Confidence: 70%
+2025-11-04 15:39:11,068 - INFO - POSITION CLOSED: BTCUSDT SHORT
+2025-11-04 15:39:11,069 - INFO - Exit Price: 103083.9800, Reason: TAKE_PROFIT
+2025-11-04 15:39:11,069 - INFO - PnL: $-0.03 (-0.05%)
+2025-11-04 15:39:11,113 - INFO - TRADE EXECUTED: BTCUSDT SHORT @ 103083.9800
+2025-11-04 15:39:11,113 - INFO - Reason: BB squeeze breakout to downside
+2025-11-04 15:39:11,113 - INFO - Confidence: 70%
+2025-11-04 15:40:12,727 - INFO - POSITION CLOSED: BTCUSDT SHORT
+2025-11-04 15:40:12,727 - INFO - Exit Price: 103041.7600, Reason: TAKE_PROFIT
+2025-11-04 15:40:12,728 - INFO - PnL: $0.02 (0.04%)
+2025-11-04 15:40:25,816 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [3480, 3500],
+        "stop_loss": 3550,
+2025-11-04 15:40:25,817 - INFO - TRADE EXECUTED: BTCUSDT SHORT @ 103041.7600
+2025-11-04 15:40:25,817 - INFO - Reason: BB squeeze breakout to downside
+2025-11-04 15:40:25,817 - INFO - Confidence: 70%
+2025-11-04 15:45:46,326 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "LONG",
+        "confidence": 75,
+        "entry_zone": [3510, 3530],
+        "stop_loss": 3450,
+
+2025-11-04 15:51:07,121 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 15:52:08,747 - INFO - POSITION CLOSED: BTCUSDT SHORT
+2025-11-04 15:52:08,748 - INFO - Exit Price: 104456.7000, Reason: STOP_LOSS
+2025-11-04 15:52:08,748 - INFO - PnL: $-0.65 (-1.37%)
+2025-11-04 15:52:08,793 - INFO - TRADE EXECUTED: BTCUSDT LONG @ 104456.7000
+2025-11-04 15:52:08,793 - INFO - Reason: BB squeeze breakout to upside
+2025-11-04 15:52:08,793 - INFO - Confidence: 70%
+2025-11-04 15:54:12,009 - INFO - POSITION CLOSED: BTCUSDT LONG
+2025-11-04 15:54:12,009 - INFO - Exit Price: 104528.6400, Reason: TAKE_PROFIT
+2025-11-04 15:54:12,009 - INFO - PnL: $0.03 (0.07%)
+2025-11-04 15:54:12,053 - INFO - TRADE EXECUTED: BTCUSDT LONG @ 104528.6400
+2025-11-04 15:54:12,053 - INFO - Reason: BB squeeze breakout to upside
+2025-11-04 15:54:12,053 - INFO - Confidence: 70%
+2025-11-04 15:55:13,641 - INFO - POSITION CLOSED: BTCUSDT LONG
+2025-11-04 15:55:13,643 - INFO - Exit Price: 104530.2000, Reason: TAKE_PROFIT
+2025-11-04 15:55:13,643 - INFO - PnL: $0.00 (0.00%)
+2025-11-04 15:55:13,685 - INFO - TRADE EXECUTED: BTCUSDT LONG @ 104530.2000
+2025-11-04 15:55:13,685 - INFO - Reason: BB squeeze breakout to upside
+2025-11-04 15:55:13,685 - INFO - Confidence: 70%
+2025-11-04 15:56:15,294 - INFO - POSITION CLOSED: DOGEUSDT LONG
+2025-11-04 15:56:15,294 - INFO - Exit Price: 0.1674, Reason: TAKE_PROFIT
+2025-11-04 15:56:15,294 - INFO - PnL: $1.35 (3.22%)
+2025-11-04 15:56:26,665 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 75,
+        "entry_zone": [104200, 104600],
+        "stop_loss": 10
+2025-11-04 16:01:47,697 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 72,
+        "entry_zone": [104200, 104500],
+        "stop_loss": 10
+2025-11-04 16:02:49,737 - INFO - POSITION CLOSED: BTCUSDT LONG
+2025-11-04 16:02:49,737 - INFO - Exit Price: 104659.5200, Reason: TAKE_PROFIT
+2025-11-04 16:02:49,737 - INFO - PnL: $0.06 (0.12%)
+2025-11-04 16:02:49,783 - INFO - TRADE EXECUTED: BTCUSDT LONG @ 104659.5200
+2025-11-04 16:02:49,783 - INFO - Reason: BB squeeze breakout to upside
+2025-11-04 16:02:49,783 - INFO - Confidence: 70%
+2025-11-04 16:04:53,484 - INFO - POSITION CLOSED: BTCUSDT LONG
+2025-11-04 16:04:53,484 - INFO - Exit Price: 104689.1500, Reason: TAKE_PROFIT
+2025-11-04 16:04:53,484 - INFO - PnL: $0.02 (0.03%)
+2025-11-04 16:04:53,531 - INFO - TRADE EXECUTED: BTCUSDT LONG @ 104689.1500
+2025-11-04 16:04:53,531 - INFO - Reason: BB squeeze breakout to upside
+2025-11-04 16:04:53,531 - INFO - Confidence: 70%
+2025-11-04 16:07:08,576 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 16:12:29,395 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 16:17:49,829 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 16:23:08,733 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "LONG",
+        "confidence": 75,
+        "entry_zone": [3540, 3570],
+        "stop_loss": 3480,
+
+2025-11-04 16:25:12,855 - INFO - POSITION CLOSED: BTCUSDT LONG
+2025-11-04 16:25:12,855 - INFO - Exit Price: 104716.2200, Reason: TAKE_PROFIT
+2025-11-04 16:25:12,855 - INFO - PnL: $0.02 (0.03%)
+2025-11-04 16:25:12,901 - INFO - TRADE EXECUTED: BTCUSDT LONG @ 104716.2200
+2025-11-04 16:25:12,901 - INFO - Reason: BB squeeze breakout to upside
+2025-11-04 16:25:12,901 - INFO - Confidence: 70%
+2025-11-04 16:27:17,478 - INFO - TRADE EXECUTED: XRPUSDT SHORT @ 2.3192
+2025-11-04 16:27:17,478 - INFO - Reason: Bearish reversal pattern detected
+2025-11-04 16:27:17,479 - INFO - Confidence: 75%
+2025-11-04 16:28:30,728 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 16:33:52,074 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 16:39:12,141 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 16:44:31,172 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 16:49:50,947 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [],
+        "stop_loss": 0,
+        "take_pro
+2025-11-04 16:55:11,324 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 17:00:31,696 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "SHORT",
+        "confidence": 72,
+        "entry_zone": [103300, 103400],
+        "stop_loss": 1
+2025-11-04 17:05:51,755 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 17:06:54,228 - INFO - POSITION CLOSED: BTCUSDT LONG
+2025-11-04 17:06:54,228 - INFO - Exit Price: 103107.8900, Reason: STOP_LOSS
+2025-11-04 17:06:54,228 - INFO - PnL: $-0.93 (-1.54%)
+2025-11-04 17:07:55,939 - INFO - TRADE EXECUTED: BTCUSDT LONG @ 103317.3000
+2025-11-04 17:07:55,940 - INFO - Reason: Bullish reversal pattern detected
+2025-11-04 17:07:55,940 - INFO - Confidence: 75%
+2025-11-04 17:11:12,135 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 65,
+        "entry_zone": [null, null],
+        "stop_loss": null,
+   
+2025-11-04 17:16:29,830 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "BNBUSDT",
+        "direction": "SHORT",
+        "confidence": 75,
+        "entry_zone": [945.00, 950.00],
+        "stop_loss": 9
+2025-11-04 17:21:48,881 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [102000, 102800],
+        "stop_loss": 10
+2025-11-04 17:27:07,934 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 17:32:30,180 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 17:37:48,430 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 17:43:08,117 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "SOLUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [158.50, 160.00],
+        "stop_loss": 15
+2025-11-04 17:46:14,369 - INFO - POSITION CLOSED: XRPUSDT SHORT
+2025-11-04 17:46:14,370 - INFO - Exit Price: 2.2481, Reason: TAKE_PROFIT
+2025-11-04 17:46:14,370 - INFO - PnL: $1.30 (3.07%)
+2025-11-04 17:46:14,415 - INFO - TRADE EXECUTED: ETHUSDT LONG @ 3459.2900
+2025-11-04 17:46:14,415 - INFO - Reason: Bullish reversal pattern detected
+2025-11-04 17:46:14,415 - INFO - Confidence: 75%
+2025-11-04 17:48:27,818 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [3440, 3460],
+        "stop_loss": 3380,
+
+2025-11-04 17:53:36,952 - INFO - 🔥 IQ BURST DETECTED: DOGEUSDT - Volume: 2.61x, Price: $0.16, RSI: 16.8
+2025-11-04 17:53:36,953 - INFO - ⚠️  IQ BURST for DOGEUSDT but no entry conditions met (RSI: 16.8, BB pos: 0.16 vs [0.16, 0.17])
+2025-11-04 17:53:47,060 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "DOGEUSDT",
+        "direction": "LONG",
+        "confidence": 80,
+        "entry_zone": [0.158, 0.162],
+        "stop_loss": 0.1
+2025-11-04 17:54:48,702 - INFO - 🔥 IQ BURST DETECTED: DOGEUSDT - Volume: 2.73x, Price: $0.16, RSI: 16.8
+2025-11-04 17:54:48,702 - INFO - ⚠️  IQ BURST for DOGEUSDT but no entry conditions met (RSI: 16.8, BB pos: 0.16 vs [0.16, 0.17])
+2025-11-04 17:59:05,466 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [101800, 102200],
+        "stop_loss": 10
+2025-11-04 18:04:23,923 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [3380, 3420],
+        "stop_loss": 3320,
+
+2025-11-04 18:09:43,170 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "LONG",
+        "confidence": 85,
+        "entry_zone": [3370, 3400],
+        "stop_loss": 3290,
+
+2025-11-04 18:10:44,788 - INFO - POSITION CLOSED: ETHUSDT LONG
+2025-11-04 18:10:44,788 - INFO - Exit Price: 3389.8900, Reason: STOP_LOSS
+2025-11-04 18:10:44,788 - INFO - PnL: $-0.93 (-2.01%)
+2025-11-04 18:15:02,035 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [100800, 101200],
+        "stop_loss": 99
+2025-11-04 18:16:03,714 - INFO - TRADE EXECUTED: ETHUSDT LONG @ 3385.9800
+2025-11-04 18:16:03,714 - INFO - Reason: Bullish reversal pattern detected
+2025-11-04 18:16:03,714 - INFO - Confidence: 75%
+2025-11-04 18:17:05,327 - INFO - POSITION CLOSED: BTCUSDT LONG
+2025-11-04 18:17:05,327 - INFO - Exit Price: 101101.2800, Reason: STOP_LOSS
+2025-11-04 18:17:05,327 - INFO - PnL: $-1.02 (-2.14%)
+2025-11-04 18:17:05,371 - INFO - TRADE EXECUTED: BTCUSDT LONG @ 101101.2800
+2025-11-04 18:17:05,371 - INFO - Reason: Bullish reversal pattern detected
+2025-11-04 18:17:05,371 - INFO - Confidence: 75%
+2025-11-04 18:19:09,086 - INFO - 🔥 IQ BURST DETECTED: BTCUSDT - Volume: 2.57x, Price: $101195.51, RSI: 12.5
+2025-11-04 18:19:09,086 - INFO - ⚠️  IQ BURST for BTCUSDT but no entry conditions met (RSI: 12.5, BB pos: 101195.51 vs [101119.43, 104243.33])
+2025-11-04 18:19:09,106 - INFO - 🔥 IQ BURST DETECTED: BNBUSDT - Volume: 2.55x, Price: $918.36, RSI: 13.2
+2025-11-04 18:19:09,106 - INFO - ⚠️  IQ BURST for BNBUSDT but no entry conditions met (RSI: 13.2, BB pos: 918.36 vs [914.05, 964.39])
+2025-11-04 18:20:21,414 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [100800, 101100],
+        "stop_loss": 99
+2025-11-04 18:25:40,510 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 18:30:59,802 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 18:36:18,853 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 18:41:37,267 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 18:46:55,613 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 75,
+        "entry_zone": [101200, 101500],
+        "stop_loss": 10
+2025-11-04 18:52:13,991 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [],
+        "stop_loss": 0,
+        "take_pro
+2025-11-04 18:57:32,509 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 19:02:52,941 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [3350, 3370],
+        "stop_loss": 3280,
+
+2025-11-04 19:08:10,860 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [100500, 101000],
+        "stop_loss": 98
+2025-11-04 19:13:30,278 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 19:18:48,567 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "BTCUSDT",
+        "direction": "LONG",
+        "confidence": 78,
+        "entry_zone": [100200, 100400],
+        "stop_loss": 99
+2025-11-04 19:24:09,433 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BULLISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "HOLD/ADD",
+        "confidence": 75,
+        "entry_zone": [3300, 3330],
+        "stop_loss": 32
+2025-11-04 19:28:16,046 - INFO - POSITION CLOSED: ETHUSDT LONG
+2025-11-04 19:28:16,047 - INFO - Exit Price: 3314.1800, Reason: STOP_LOSS
+2025-11-04 19:28:16,047 - INFO - PnL: $-0.98 (-2.12%)
+2025-11-04 19:29:28,554 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "NEUTRAL",
+    "trade": {
+        "symbol": "NONE",
+        "direction": "NONE",
+        "confidence": 0,
+        "entry_zone": [0, 0],
+        "stop_loss": 0,
+        "take
+2025-11-04 19:31:31,873 - INFO - TRADE EXECUTED: ETHUSDT LONG @ 3315.9900
+2025-11-04 19:31:31,873 - INFO - Reason: Bullish reversal pattern detected
+2025-11-04 19:31:31,873 - INFO - Confidence: 75%
+2025-11-04 19:34:46,793 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "LONG",
+        "confidence": 75,
+        "entry_zone": [3250, 3280],
+        "stop_loss": 3180,
+
+2025-11-04 19:40:05,027 - ERROR - Failed to parse AI response: ```json
+{
+    "sentiment": "BEARISH",
+    "trade": {
+        "symbol": "ETHUSDT",
+        "direction": "LONG",
+        "confidence": 75,
+        "entry_zone": [3250, 3280],
+        "stop_loss": 3200,
+

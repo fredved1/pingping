@@ -1,0 +1,27 @@
+============================================================
+TRADING BOT PERFORMANCE REPORT
+============================================================
+Generated: 2025-11-04 19:30:30
+
+PORTFOLIO SUMMARY:
+Initial Capital: $200.00
+Current Equity: $152.47
+Available Cash: $152.66
+Open Positions: 1
+Total Return: -23.76%
+
+OPEN POSITIONS:
+- BTCUSDT LONG: Entry=$101101.2800, Current=$100699.2900, PnL=-0.40%
+
+TRADING STATISTICS:
+Total Trades: 20
+Wins: 13, Losses: 7
+Win Rate: 65.0%
+Average Win: $0.26
+Average Loss: $-0.65
+
+LATEST AI ANALYSIS:
+Market Sentiment: NEUTRAL
+Reasoning: AI analysis unavailable...
+
+============================================================
