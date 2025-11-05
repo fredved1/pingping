@@ -78,6 +78,17 @@ class Config:
 
     TRAILING_STOP_PCT = 2.0
 
+    # Extreme Reversal Protection (Safety Net)
+    # Only triggers when ALL conditions met:
+    # - Position age > 5 minutes (let pattern develop first)
+    # - Position losing > 1%
+    # - 10+ extreme bursts (>200k delta) opposing position in last 5 min
+    # This prevents overtrading while protecting against black swan events
+    EXTREME_REVERSAL_MIN_AGE = 5  # minutes
+    EXTREME_REVERSAL_LOSS_THRESHOLD = -1.0  # %
+    EXTREME_REVERSAL_BURST_COUNT = 10  # opposing bursts needed
+    EXTREME_REVERSAL_DELTA_THRESHOLD = 200000  # minimum delta size
+
     # Symbols to trade
     TRADING_SYMBOLS = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE']
 
@@ -1061,7 +1072,16 @@ class CryptoIQTradingBot:
             pnl = raw_pnl - total_fees
             pnl_pct = (pnl / position_value) * 100
 
-            # Check exit conditions
+            # SAFETY NET: Check for extreme market reversal
+            # Only after position has had time to develop
+            position_age = (datetime.now() - position['entry_time']).total_seconds() / 60
+            if position_age >= self.config.EXTREME_REVERSAL_MIN_AGE and pnl_pct <= self.config.EXTREME_REVERSAL_LOSS_THRESHOLD:
+                if self._check_extreme_reversal(symbol, position):
+                    logging.warning(f"⚠️  EXTREME REVERSAL detected for {symbol} - Exiting early to limit loss")
+                    self.close_position(symbol, current_price, 'EXTREME_REVERSAL')
+                    continue
+
+            # Standard exit conditions (stop/target)
             if position['direction'] == 'LONG':
                 if current_price <= position['stop_loss']:
                     self.close_position(symbol, current_price, 'STOP_LOSS')
@@ -1072,6 +1092,47 @@ class CryptoIQTradingBot:
                     self.close_position(symbol, current_price, 'STOP_LOSS')
                 elif current_price <= position['take_profit']:
                     self.close_position(symbol, current_price, 'TAKE_PROFIT')
+
+    def _check_extreme_reversal(self, symbol: str, position: dict) -> bool:
+        """
+        Check if there's an extreme market reversal warranting early exit
+
+        Criteria (ALL must be met from Config):
+        - Position losing > EXTREME_REVERSAL_LOSS_THRESHOLD
+        - EXTREME_REVERSAL_BURST_COUNT+ bursts with delta > EXTREME_REVERSAL_DELTA_THRESHOLD
+        - Bursts in opposite direction of position
+        - Bursts occurred in last 5 minutes
+
+        This is a SAFETY NET, not active management. Triggers rarely.
+        """
+        try:
+            # Get recent bursts for this symbol (last 5 minutes)
+            recent_bursts = self.iq_client.get_recent_bursts(symbol, minutes=5)
+
+            if len(recent_bursts) < self.config.EXTREME_REVERSAL_BURST_COUNT:
+                return False  # Need minimum burst count to confirm extreme reversal
+
+            # Count extreme bursts in opposite direction
+            opposing_bursts = 0
+            for burst in recent_bursts:
+                # Extreme burst = abs(delta) > threshold
+                if abs(burst.delta) > self.config.EXTREME_REVERSAL_DELTA_THRESHOLD:
+                    # Check if delta opposes our position
+                    if position['direction'] == 'LONG' and burst.delta < -self.config.EXTREME_REVERSAL_DELTA_THRESHOLD:
+                        opposing_bursts += 1  # Strong selling against our LONG
+                    elif position['direction'] == 'SHORT' and burst.delta > self.config.EXTREME_REVERSAL_DELTA_THRESHOLD:
+                        opposing_bursts += 1  # Strong buying against our SHORT
+
+            # Extreme reversal = required number of strong opposing bursts
+            if opposing_bursts >= self.config.EXTREME_REVERSAL_BURST_COUNT:
+                logging.info(f"🚨 Extreme reversal signal: {opposing_bursts} opposing bursts (>{self.config.EXTREME_REVERSAL_DELTA_THRESHOLD} delta) in last 5 min")
+                return True
+
+            return False
+
+        except Exception as e:
+            logging.error(f"Error checking extreme reversal: {e}")
+            return False
 
     def close_position(self, symbol: str, exit_price: float, reason: str):
         """Close a position"""
