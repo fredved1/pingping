@@ -1,6 +1,6 @@
-# 🚀 Crypto IQ Burst Trading Bot
+# 🚀 Crypto IQ Burst Trading Bot v3.0
 
-An advanced cryptocurrency trading bot that combines volume absorption analysis (IQ Bursts), Bollinger Bands, and AI-powered decision making to identify high-probability trading opportunities.
+An advanced cryptocurrency trading bot with **real-time WebSocket integration** to Crypto IQ's burst detection service, combined with AI-powered decision making and pattern-specific trading strategies.
 
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -8,16 +8,17 @@ An advanced cryptocurrency trading bot that combines volume absorption analysis 
 
 ## 📊 Strategy Overview
 
-The bot implements the **Crypto IQ Burst** strategy - detecting high-volume absorption patterns that typically precede significant price movements. When institutional traders accumulate positions, they create distinctive volume spikes with minimal price movement. This "absorption" pattern is a powerful predictor of upcoming trends.
+The bot implements the **Crypto IQ Burst v3.0** strategy with **direct WebSocket connection** to Crypto IQ's real-time burst detection service. It identifies three distinct pattern types (ABSORPTION, BREAKOUT, REVERSAL) with pattern-specific risk parameters and position sizing.
 
 ### Key Features
 
-- **🎯 IQ Burst Detection**: Identifies volume spikes (>2.5x average) with minimal price change (<0.3%)
-- **📈 Bollinger Band Analysis**: Catches volatility breakouts and squeeze patterns
-- **🤖 AI-Powered Decisions**: Uses Deepseek AI to validate signals and analyze market context
-- **🔄 Reversal Patterns**: Detects trend reversals using RSI divergences
-- **⚡ Real-time Trading**: Connects to Binance API for live market data
-- **🛡️ Risk Management**: Automatic stop-loss, take-profit, and trailing stops
+- **🌐 Real-Time WebSocket**: Direct connection to Crypto IQ's burst detection service (matrix.cryptoiq.com)
+- **🎯 Pattern-Specific Trading**: Three distinct patterns (ABSORPTION, BREAKOUT, REVERSAL) with optimized parameters
+- **📊 Smart Position Sizing**: Pattern-based position multipliers (ABSORPTION: 1.2x, BREAKOUT: 1.0x, REVERSAL: 0.8x)
+- **🤖 AI-Powered Decisions**: DeepSeek AI validates signals and analyzes market context
+- **💰 Fee-Aware Trading**: WooX exchange fees (0.03% maker/taker) integrated into P&L calculations
+- **🛡️ Pattern-Specific Risk**: Customized stop-loss and take-profit levels per pattern type
+- **📈 Real-Time Market Data**: Binance API integration for price feeds and technical indicators
 
 ## 🎯 Performance Targets
 
@@ -28,16 +29,36 @@ The bot implements the **Crypto IQ Burst** strategy - detecting high-volume abso
 
 ## 🚦 How It Works
 
-### IQ Burst Signal Example
+### Pattern Types & Trading Logic
+
+**1. ABSORPTION Pattern** (85% confidence, highest priority)
 ```
-1. Volume spikes to 3x average
-2. Price moves only 0.2%
-3. RSI oversold at 28
-4. Price below Bollinger lower band
-→ HIGH PROBABILITY LONG SIGNAL!
+- High PV (Price-Volume) with low delta
+- Indicates liquidation/accumulation zones
+- INVERTED LOGIC: Positive delta = SHORT, Negative delta = LONG
+- Position size: 60% of capital (1.2x multiplier)
+- Risk: 2.0% stop-loss, 4.5% take-profit
 ```
 
-The bot continuously monitors 6 major cryptocurrencies (BTC, ETH, SOL, BNB, XRP, DOGE) for these patterns and executes trades automatically when conditions align.
+**2. BREAKOUT Pattern** (80% confidence)
+```
+- High delta with high strings count
+- Momentum confirmation required
+- Standard directional trading
+- Position size: 50% of capital (1.0x base)
+- Risk: 3.0% stop-loss, 5.0% take-profit
+```
+
+**3. REVERSAL Pattern** (75% confidence)
+```
+- Delta direction change detected
+- Requires confirmation from RSI/BB
+- Medium position size
+- Position size: 40% of capital (0.8x multiplier)
+- Risk: 2.5% stop-loss, 4.0% take-profit
+```
+
+The bot maintains a **WebSocket connection** to Crypto IQ's service and monitors BTC, ETH, SOL, BNB, XRP, DOGE in real-time.
 
 ## 🔧 Installation
 
@@ -68,6 +89,11 @@ export BINANCE_API_KEY='your_binance_key'  # Optional
 
 4. Run the bot:
 ```bash
+python3 crypto_iq_bot.py
+```
+
+Or use the automated setup script:
+```bash
 chmod +x run_bot.sh
 ./run_bot.sh
 ```
@@ -77,55 +103,83 @@ chmod +x run_bot.sh
 ```
 crypto-iq-burst-bot/
 │
-├── trading_bot.py          # Main trading bot with full features
+├── crypto_iq_bot.py        # ⭐ MAIN BOT - v3.0 with WebSocket integration
 ├── demo_iq_burst.py        # Interactive demo of IQ Burst detection
 ├── test_bot.py             # Test version for live market analysis
+├── dashboard_server.py     # Real-time web dashboard
+├── dashboard.html          # Dashboard UI
 ├── run_bot.sh              # Setup and launch script
 ├── requirements.txt        # Python dependencies
-├── .env.example           # Environment variables template
-└── README.md              # This file
+├── bot_state.json          # Real-time bot state (auto-generated)
+├── trading_bot.db          # SQLite database (auto-generated)
+└── README.md               # This file
 ```
+
+**Important**: Always run `crypto_iq_bot.py` - this is the latest v3.0 version with all features!
 
 ## ⚙️ Configuration
 
-Edit the configuration in `trading_bot.py` or use environment variables:
+Edit the configuration in `crypto_iq_bot.py` (Config class):
 
 ```python
 # Trading Parameters
 INITIAL_CAPITAL = 200.0          # Starting capital
 MAX_POSITIONS = 2                # Max concurrent trades
-POSITION_SIZE_PCT = 0.3          # 30% per position
+POSITION_SIZE_PCT = 0.5          # 50% base position size
 
-# Risk Management  
-STOP_LOSS_PCT = 2.0              # 2% stop loss
-TAKE_PROFIT_PCT = 3.0            # 3% take profit
-TRAILING_STOP_PCT = 1.5          # 1.5% trailing stop
+# Pattern-Specific Position Multipliers
+ABSORPTION_SIZE_MULTIPLIER = 1.2  # 60% for absorption (highest confidence)
+BREAKOUT_SIZE_MULTIPLIER = 1.0    # 50% for breakout (base)
+REVERSAL_SIZE_MULTIPLIER = 0.8    # 40% for reversal (lower confidence)
 
-# Signal Generation
-AI_CONFIDENCE_THRESHOLD = 70     # Min confidence for trades
-VOLUME_SPIKE_MULTIPLIER = 2.5    # For IQ Burst detection
+# Pattern-Specific Risk Parameters
+ABSORPTION_STOP_LOSS_PCT = 2.0   # Tight stops for liquidation patterns
+ABSORPTION_TAKE_PROFIT_PCT = 4.5
+
+BREAKOUT_STOP_LOSS_PCT = 3.0     # Wider stops for momentum
+BREAKOUT_TAKE_PROFIT_PCT = 5.0
+
+REVERSAL_STOP_LOSS_PCT = 2.5     # Medium stops
+REVERSAL_TAKE_PROFIT_PCT = 4.0
+
+# Crypto IQ WebSocket
+TOTAL_TARGET = 100               # PV threshold for burst detection
+STRINGS_TARGET = 10              # Strings threshold
+MIN_DELTA_FOR_SIGNAL = 50        # Minimum delta for trade signals
+
+# WooX Exchange Fees
+MAKER_FEE = 0.0003              # 0.03% maker fee
+TAKER_FEE = 0.0003              # 0.03% taker fee
 ```
 
 ## 📊 Trading Signals
 
-### Signal Types
+### Pattern-Based Signals (Real-Time WebSocket)
 
-1. **IQ_BURST_LONG/SHORT** (Confidence: 85%)
-   - High volume absorption pattern detected
-   - Price at Bollinger Band extreme
-   - RSI confirming oversold/overbought
+1. **ABSORPTION Pattern** (Confidence: 85% - Highest Priority)
+   - Real-time burst from Crypto IQ WebSocket
+   - High PV (>500) with low delta (<30)
+   - **INVERTED LOGIC**: Positive delta → SHORT, Negative delta → LONG
+   - RSI confirmation required (oversold/overbought)
+   - Position: 60% of capital
 
-2. **REVERSAL_LONG/SHORT** (Confidence: 75%)
-   - Swing high/low with RSI divergence
-   - Volume confirmation
+2. **BREAKOUT Pattern** (Confidence: 80%)
+   - High delta (>100) with high strings (>15)
+   - Momentum confirmation from order imbalance
+   - Standard directional entry
+   - Position: 50% of capital
 
-3. **BB_SQUEEZE_LONG/SHORT** (Confidence: 70%)
-   - Bollinger Band width contraction
-   - Breakout direction confirmed
+3. **REVERSAL Pattern** (Confidence: 75%)
+   - Delta direction change detected
+   - Bollinger Band extremes required
+   - Second-half delta must be >50
+   - Position: 40% of capital
 
-4. **AI_LONG/SHORT** (Confidence: Variable)
-   - AI analysis of market conditions
-   - Multiple factor confirmation
+### AI Enhancement
+- DeepSeek AI validates all signals
+- Can recommend SKIP or REDUCE_SIZE
+- Analyzes sentiment, risk factors, and market context
+- Minimum 70% AI confidence required
 
 ## 🧪 Testing
 
@@ -143,17 +197,24 @@ This will:
 
 ## 📈 Performance Monitoring
 
-The bot generates reports every 15 minutes including:
-- Portfolio equity and returns
-- Open positions with P&L
-- Win rate statistics
-- AI market analysis
-- Risk metrics
+**Real-Time Dashboard**
+```bash
+python3 dashboard_server.py
+# Then open http://localhost:8000 in your browser
+```
 
-Reports are saved to:
-- `trading_report.txt` - Regular updates
-- `final_trading_report.txt` - Session summary
-- SQLite database for historical analysis
+The bot generates reports every 15 minutes including:
+- Portfolio equity and returns with fee calculations
+- Open positions with live P&L (fee-adjusted)
+- Win rate statistics by pattern type
+- Recent burst detections with patterns
+- AI analysis history
+- WebSocket connection status
+
+Data is saved to:
+- `bot_state.json` - Real-time state (updated every 5 seconds)
+- `trading_bot.db` - SQLite database for historical analysis
+- `crypto_iq_bot.log` - Detailed logging
 
 ## 🤖 AI Integration
 
@@ -186,20 +247,23 @@ performance     - Equity curve and metrics
 
 ## 🐛 Troubleshooting
 
-### No signals generated
-- Check market volatility
-- Verify API keys
-- Lower confidence threshold temporarily
+### WebSocket not connecting
+- Check internet connection
+- Verify Crypto IQ service is online (wss://matrix.cryptoiq.com)
+- Check firewall settings
+- Review logs for connection errors
 
-### Too many false signals
-- Increase AI_CONFIDENCE_THRESHOLD
-- Adjust VOLUME_SPIKE_MULTIPLIER
-- Reduce MAX_POSITIONS
+### No signals generated
+- Verify WebSocket is connected (check logs for "✅ Crypto IQ WebSocket connected")
+- Adjust TOTAL_TARGET and STRINGS_TARGET if too restrictive
+- Check MIN_DELTA_FOR_SIGNAL threshold
+- Monitor burst detections in logs (🎯 SIGNIFICANT BURST messages)
 
 ### AI not working
-- Verify DEEPSEEK_API_KEY
-- Check rate limits
-- Review logs in `trading_bot.log`
+- Verify DEEPSEEK_API_KEY is set correctly
+- Check API rate limits
+- Review logs in `crypto_iq_bot.log`
+- AI will use default analysis if unavailable (bot continues running)
 
 ## 📚 Learn More
 
@@ -232,8 +296,17 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Version**: 2.0  
-**Author**: Advanced Trading Systems  
+**Version**: 3.0
+**Main File**: `crypto_iq_bot.py` ⭐
 **Last Updated**: November 2024
+
+### What's New in v3.0
+- ✅ Real-time WebSocket integration with Crypto IQ service
+- ✅ Pattern-specific trading (ABSORPTION, BREAKOUT, REVERSAL)
+- ✅ Pattern-based position sizing and risk management
+- ✅ Fee-aware P&L calculations (WooX exchange)
+- ✅ CRITICAL FIX: Inverted ABSORPTION logic (liquidation theory)
+- ✅ Real-time dashboard with live burst detection
+- ✅ Enhanced logging and state management
 
 For support, please open an issue on GitHub.
