@@ -664,7 +664,13 @@ class SignalGenerator:
             ai_analysis = self.ai_analyst.analyze_burst_signal(signal, market_context)
             signal.ai_analysis = ai_analysis
 
-            # Adjust confidence based on AI
+            # Check AI confidence threshold
+            ai_confidence = ai_analysis.get('confidence', 0)
+            if ai_confidence < Config.AI_CONFIDENCE_THRESHOLD:
+                logging.info(f"❌ AI confidence too low ({ai_confidence}% < {Config.AI_CONFIDENCE_THRESHOLD}%) - skipping {symbol}")
+                return None
+
+            # Adjust confidence based on AI recommendation
             if ai_analysis.get('recommendation') == 'SKIP':
                 logging.info(f"❌ AI recommends skipping signal for {symbol}")
                 return None
