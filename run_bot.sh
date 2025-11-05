@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Trading Bot Setup and Run Script
+# Crypto IQ Burst Trading Bot Setup and Run Script
 
-echo "=================================="
-echo "CRYPTO TRADING BOT v2.0 SETUP"
-echo "=================================="
+echo "=========================================="
+echo "CRYPTO IQ BURST TRADING BOT v3.0 SETUP"
+echo "=========================================="
 
 # Check Python version
 python_version=$(python3 --version 2>&1)
@@ -13,7 +13,7 @@ echo "Python version: $python_version"
 # Install required packages
 echo ""
 echo "Installing required packages..."
-pip3 install pandas numpy requests aiohttp python-dotenv --break-system-packages
+pip3 install pandas numpy requests websocket-client python-dotenv --break-system-packages
 
 # Create necessary directories
 echo ""
@@ -69,24 +69,23 @@ EOF
 fi
 
 echo ""
-echo "=================================="
+echo "=========================================="
 echo "SETUP COMPLETE!"
-echo "=================================="
+echo "=========================================="
 echo ""
-echo "To run the bot:"
-echo "1. Edit .env file with your API keys"
-echo "2. Run: python3 trading_bot.py"
+echo "To run the bot manually:"
+echo "  python3 crypto_iq_bot.py"
 echo ""
-echo "Features:"
-echo "✓ Crypto IQ Burst Detection"
-echo "✓ Bollinger Band Analysis"
-echo "✓ AI-Powered Decision Making"
-echo "✓ Reversal Pattern Recognition"
-echo "✓ Risk Management with Trailing Stops"
-echo "✓ Multi-Symbol Trading"
+echo "Features (v3.0):"
+echo "✓ Real-Time WebSocket to Crypto IQ"
+echo "✓ Pattern-Specific Trading (ABSORPTION/BREAKOUT/REVERSAL)"
+echo "✓ Smart Position Sizing per Pattern"
+echo "✓ Fee-Aware P&L Calculations"
+echo "✓ AI-Powered Signal Validation"
+echo "✓ Real-Time Dashboard (run: python3 dashboard_server.py)"
 echo ""
 echo "Starting bot in 5 seconds..."
 sleep 5
 
 # Run the trading bot
-python3 trading_bot.py
+python3 crypto_iq_bot.py
