@@ -283,16 +283,17 @@ class CryptoIQWebSocketClient:
         """Run WebSocket connection"""
         def on_open(ws):
             logging.info("✅ Crypto IQ WebSocket connected")
-            # Subscribe to all symbols
-            for symbol in self.symbols:
-                subscription = {
-                    "op": "sub",
-                    "symbols": f"{symbol}USDT",
-                    "pv": self.total_target,
-                    "strings": self.strings_target
-                }
-                ws.send(json.dumps(subscription))
-                logging.info(f"📊 Subscribed to {symbol}USDT bursts (PV>{self.total_target}, Strings>{self.strings_target})")
+            # Subscribe to all symbols in ONE subscription (comma-separated)
+            symbols_str = ",".join([f"{symbol}USDT" for symbol in self.symbols])
+            subscription = {
+                "op": "sub",
+                "symbols": symbols_str,
+                "pv": self.total_target,
+                "strings": self.strings_target
+            }
+            ws.send(json.dumps(subscription))
+            logging.info(f"📊 Subscribed to ALL symbols: {symbols_str}")
+            logging.info(f"   Thresholds: PV>{self.total_target}, Strings>{self.strings_target}")
 
         def on_message(ws, message):
             try:
@@ -346,6 +347,7 @@ class CryptoIQWebSocketClient:
         symbol = burst_data.s.replace('USDT', '')
 
         if symbol not in self.symbols:
+            logging.warning(f"⚠️  Received burst for unknown symbol: {burst_data.s}")
             return
 
         # Align to kline interval
@@ -366,7 +368,10 @@ class CryptoIQWebSocketClient:
         self.burst_markers[symbol].append(burst_marker)
         self.recent_bursts[symbol].append(burst_marker)
 
-        # Log significant bursts
+        # Log ALL bursts (not just significant ones) to verify all symbols work
+        logging.info(f"📊 Burst received: {symbol} - PV:{burst_data.pv:.1f} Delta:{burst_data.delta:.1f} Strings:{burst_data.strings}")
+
+        # Log significant bursts with extra emphasis
         if abs(burst_data.delta) > Config.MIN_DELTA_FOR_SIGNAL:
             logging.info(f"🎯 SIGNIFICANT BURST - {symbol}")
             logging.info(f"   PV: {burst_data.pv:.2f}, CV: {burst_data.cv:.2f}")
