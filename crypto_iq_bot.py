@@ -39,7 +39,7 @@ class Config:
     CRYPTO_IQ_PING_INTERVAL = 30  # seconds
 
     # Trading Parameters
-    INITIAL_CAPITAL = 200.0
+    INITIAL_CAPITAL = 1000.0  # Increased from 200 to 1000 for meaningful profits
     MAX_POSITIONS = 2
     POSITION_SIZE_PCT = 0.5  # Base position size (50% of capital)
 
